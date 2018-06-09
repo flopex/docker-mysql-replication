@@ -46,6 +46,9 @@ mysqldump \
   | mysql -uroot -p$MYSQL_ROOT_PASSWORD
 
 echo mysqldump completed.
+echo Fixing version compatibility
+mysql -uroot -p$MYSQL_ROOT_PASSWORD -e "DROP TABLE mysql.slave_relay_log_info;"
+mysql_upgrade -uroot -p$MYSQL_ROOT_PASSWORD -s
 
 echo Starting slave ...
 mysql -uroot -p$MYSQL_ROOT_PASSWORD -e "START SLAVE;"
