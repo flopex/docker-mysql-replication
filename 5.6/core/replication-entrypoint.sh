@@ -38,6 +38,8 @@ mysql -uroot -p$MYSQL_ROOT_PASSWORD -e "\
   ON *.* \
   TO '$REPLICATION_USER'@'%' \
   IDENTIFIED BY '$REPLICATION_PASSWORD'; \
+  CREATE USER 'orchestrator'@'%' IDENTIFIED BY ''; \
+  GRANT DROP ON _pseudo_gtid_.* to 'orchestrator'@'%'; \
   FLUSH PRIVILEGES; \
 "
 EOF
